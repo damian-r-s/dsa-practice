@@ -1,6 +1,6 @@
 #k - maximum number of steps
 #n - number of stairs
-def stairsRecursive(k, n):    
+def stairsRecursion(k, n):    
     if n == 0:
         return 1        
     
@@ -9,11 +9,10 @@ def stairsRecursive(k, n):
         key = k
         if(n - i < k):
             key = n - 1            
-        sum += stairsRecursive(key, n - i)
+        sum += stairsRecursion(key, n - i)
         
     return sum        
 
-print(stairsRecursive(4, 0)) #I assume level 0 requires 1 step
-print(stairsRecursive(2, 3)) # 3       
-print(stairsRecursive(3, 7)) # 44
-
+print(stairsRecursion(4, 0)) #I assume level 0 requires 1 step
+print(stairsRecursion(2, 3)) # 3
+print(stairsRecursion(3, 7)) # 44
