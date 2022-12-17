@@ -1,3 +1,5 @@
+#k - maximum number of steps
+#n - number of stairs
 def stairsRecursive(k, n):    
     if n == 0:
         return 1        
@@ -14,3 +16,4 @@ def stairsRecursive(k, n):
 print(stairsRecursive(4, 0)) #I assume level 0 requires 1 step
 print(stairsRecursive(2, 3)) # 3       
 print(stairsRecursive(3, 7)) # 44
+
