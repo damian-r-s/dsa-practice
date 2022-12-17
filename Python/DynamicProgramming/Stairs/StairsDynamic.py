@@ -1,3 +1,4 @@
+#Bottom up approach
 def stairsDynamic(k, n):
     if(n <= 1):
         return 1
