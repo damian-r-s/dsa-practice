@@ -26,7 +26,7 @@ class Solution:
             return None
         
         root = TreeNode()
-        root.val = inorder[rootIdx]        
+        root.val = inorder[rootIdx]  
         root.left = self.buildTree(inorder[0:rootIdx], postorder)
         root.right = self.buildTree(inorder[rootIdx + 1:l], postorder)
         
