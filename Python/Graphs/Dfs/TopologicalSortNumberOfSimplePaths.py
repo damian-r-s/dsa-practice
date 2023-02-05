@@ -28,11 +28,21 @@ def dfsNested(vertex, edges, state, topology):
     state[vertex] = 2
     topology.append(vertex)
 
-def printResult(topology):
-    for i in range(len(topology) - 1, -1, -1):
-        print(topology[i], sep='', end=' ', flush=True)
+def numberofSimplePaths(graph, topology, source, destination):
+    n = len(graph)
+    df = [0 for i in range(n)]
+    df[destination] = 1
+    
+    for i in range(n):
+        v = topology[i]
+        
+        for e in graph[v]:
+            df[v] += df[e]
+    
+    return df[source]
 
-graphSorted = topological([[1, 2, 3], [], [3], [4], []])
+graph = [[1, 2, 3, 4], [], [3], [4], []]
+graphSorted = topological(graph)
+simplePaths = numberofSimplePaths(graph, graphSorted, 0, 4)
 
-printResult(graphSorted)
-
+print("Number of simple paths: " + str(simplePaths))
