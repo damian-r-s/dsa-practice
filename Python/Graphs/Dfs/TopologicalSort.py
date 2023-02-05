@@ -4,7 +4,7 @@ import queue
 # 1 Gray
 # 2 Black
 
-# It does not check if DAG
+# If cycle detected then Exception thrown
 def topological(edges):
     n = len(edges)
     state = [0 for _ in range(n)] # 0, 1, 2 lines: 1, 2, 3
@@ -22,6 +22,9 @@ def dfsNested(vertex, edges, state, topology):
     state[vertex] = 1
     
     for adj in edges[vertex]:
+        if state[adj] == 1:
+            raise Exception("Only DAG can posses topological sorted order!")
+        
         dfsNested(adj, edges, state, topology)
 
     state[vertex] = 2
