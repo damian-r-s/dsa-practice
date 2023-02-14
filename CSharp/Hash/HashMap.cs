@@ -1,3 +1,4 @@
+//This is too slow, it needs additonal data structure BST
 public class MyHashMap
 {
     private List<(int, int)>[] _array;
