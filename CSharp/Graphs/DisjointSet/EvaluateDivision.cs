@@ -83,12 +83,4 @@ public class Solution
 
         graph[from].Add(new Node(to, value));
     }
-
-    List<Node> Find(string node)
-    {
-        if (graph.ContainsKey(node))
-            return graph[node];
-
-        return null;
-    }
 }
