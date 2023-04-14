@@ -25,4 +25,3 @@ def UCC(graph):
     return componetns
 
 print(UCC([[1], [0, 2], [3, 1], [2]]))
-
