@@ -28,6 +28,7 @@ def dijkstraNaive(graph, s):
         
     return distances
     
-graph = [[(1, 2), (2, 3)], [(3, 1)], [(3, 4)], []]
+# graph = [[(1, 2), (2, 3)], [(3, 1)], [(3, 4)], []]
 
+graph = [[(1, 1)], [(2, -5)], [(3, 2)], [(1, 3)]]
 print(dijkstraNaive(graph, 0))
