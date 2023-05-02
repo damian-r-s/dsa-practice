@@ -118,9 +118,7 @@ class Tree:
     def __select(self, root: TreeNode, k):
         if root is None:
             return None
-        size = 0
-        if root.left is not None:
-            size = root.left.size
+        size = self.__size(root.left)
                     
         if size > k:
             return self.__select(root.left, k)
@@ -128,4 +126,20 @@ class Tree:
             return self.__select(root.right, k - size - 1)
         else:
             return root
-                
+    
+    def rank(self, key: any) -> int:
+        if self.root is None:
+            return 0
+        
+        return self.__rank(self.root, key)
+    
+    def __rank(self, root: TreeNode, key: any):
+        if root is None:
+            return 0
+        
+        if root.key > key:
+            return self.__rank(root.left, key)
+        elif root.key < key:
+            return 1 + self.__size(root.left) + self.__rank(root.right, key)
+        else:            
+            return self.__size(root.left)     

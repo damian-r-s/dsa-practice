@@ -109,6 +109,32 @@ class BinarySearchTreeUnitTests(unittest.TestCase):
         
         node = self.bst.select(5)
         self.assertEqual(node.key, 'h', 'There is h key!')  
+        
+    def test_rank_empty_tree_equals_zero(self):        
+        self.assertEqual(self.bst.rank('A'), 0, 'Must be zero for empty tree!')  
+        
+    def test_left_tree_rank_equals_subtree_size(self):        
+        self.bst.put('e', 1)
+        self.bst.put('b', 2)
+        self.bst.put('a', 3)
+        self.bst.put('c', 4)
+        self.bst.put('h', 5)        
+        self.bst.put('g', 6)
+        self.bst.put('j', 7)
+                
+        self.assertEqual(self.bst.rank('e'), 3, 'Must be equal to 3!')  
+        self.assertEqual(self.bst.rank('g'), 4, 'Must be equal to 5!')  
+        
+    def test_rank_the_maximum_node(self):        
+        self.bst.put('e', 1)
+        self.bst.put('b', 2)
+        self.bst.put('a', 3)
+        self.bst.put('c', 4)
+        self.bst.put('h', 5)        
+        self.bst.put('g', 6)
+        self.bst.put('j', 7)
+        
+        self.assertEqual(self.bst.rank('k'), 7, 'Must be equal to 7!')
     
 if __name__ == '__main__':
     unittest.main()   
