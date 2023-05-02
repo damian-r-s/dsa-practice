@@ -109,3 +109,23 @@ class Tree:
         else:
             return root    
         
+    def select(self, k) -> TreeNode:
+        if self.root is None:
+            return None
+        
+        return self.__select(self.root, k)
+    
+    def __select(self, root: TreeNode, k):
+        if root is None:
+            return None
+        size = 0
+        if root.left is not None:
+            size = root.left.size
+                    
+        if size > k:
+            return self.__select(root.left, k)
+        elif size < k:
+            return self.__select(root.right, k - size - 1)
+        else:
+            return root
+                

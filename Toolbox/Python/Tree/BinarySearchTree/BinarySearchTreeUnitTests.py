@@ -92,5 +92,23 @@ class BinarySearchTreeUnitTests(unittest.TestCase):
         self.assertEqual(self.bst.ceil('f').key, 'g', 'The ceil should be g!')
         self.assertEqual(self.bst.ceil('p'), None, 'The ceil should be None!')
         
+    def test_select_k_nodes_lower_than(self):
+        self.bst.put('e', 5)
+        self.bst.put('b', 15)
+        self.bst.put('a', 20)
+        self.bst.put('c', 25)
+        self.bst.put('h', 30)        
+        self.bst.put('g', 35)
+        self.bst.put('j', 35)
+        
+        node = self.bst.select(1)
+        self.assertEqual(node.key, 'b', 'The only one key higher than 1 is b!')
+        
+        node = self.bst.select(15)
+        self.assertEqual(node, None, 'There is no such key!')        
+        
+        node = self.bst.select(5)
+        self.assertEqual(node.key, 'h', 'There is h key!')  
+    
 if __name__ == '__main__':
     unittest.main()   
