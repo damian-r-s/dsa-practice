@@ -143,3 +143,19 @@ class Tree:
             return 1 + self.__size(root.left) + self.__rank(root.right, key)
         else:            
             return self.__size(root.left)     
+        
+    def deleteMin(self):
+        if self.root is None:
+            return None
+        
+        return self.__deleteMin(self.root)
+    
+    def __deleteMin(self, root: TreeNode):
+        if root.left is None:
+            return root.right
+        
+        root.left = self.__deleteMin(root.left)
+        root.size = 1 + self.__size(root.left) + self.__size(root.right)                
+        return root
+        
+        

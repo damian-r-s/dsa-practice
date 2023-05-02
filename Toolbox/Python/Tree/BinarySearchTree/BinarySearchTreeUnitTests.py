@@ -135,6 +135,20 @@ class BinarySearchTreeUnitTests(unittest.TestCase):
         self.bst.put('j', 7)
         
         self.assertEqual(self.bst.rank('k'), 7, 'Must be equal to 7!')
+        
+    def test_delte_min(self):
+        self.bst.put('h', 4)         
+        self.bst.put('b', 2)
+        self.bst.put('a', 1)
+        self.bst.put('c', 3)
+        
+        size = self.bst.size()
+        
+        self.bst.deleteMin()
+        
+        self.assertEqual(self.bst.size(), size - 1, 'Delete min node reduce size!')
+        self.assertEqual(self.bst.get('a'), None, 'Key cannot exist in the tree after being deleted!')
+        
     
 if __name__ == '__main__':
     unittest.main()   
