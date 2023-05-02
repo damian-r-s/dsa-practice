@@ -77,5 +77,20 @@ class BinarySearchTreeUnitTests(unittest.TestCase):
         self.assertEqual(self.bst.floor('s').key, 'r', 'The floor should be r!')
         self.assertEqual(self.bst.floor('q').key, 'p', 'The floor should be o!')
 
+    def test_ceil_returns_none_if_tree_is_empty(self):
+        self.assertEqual(self.bst.ceil('a'), None, 'If tree is empty then ceil equals None!')
+    
+    def test_ceil_is_on_the_right_found_correctly(self):
+        self.bst.put('e', 5)
+        self.bst.put('b', 15)
+        self.bst.put('a', 20)
+        self.bst.put('c', 25)
+        self.bst.put('h', 30)        
+        self.bst.put('g', 35)
+        self.bst.put('j', 35)
+        
+        self.assertEqual(self.bst.ceil('f').key, 'g', 'The ceil should be g!')
+        self.assertEqual(self.bst.ceil('p'), None, 'The ceil should be None!')
+        
 if __name__ == '__main__':
     unittest.main()   

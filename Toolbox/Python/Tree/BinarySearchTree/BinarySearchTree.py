@@ -72,6 +72,25 @@ class Tree:
             return root        
         return self.__min(root.left)
     
+    def ceil(self, key:any) -> TreeNode:
+        if self.root is None:
+            return None
+        
+        return self.__ceil(self.root, key)
+    
+    def __ceil(self, root: TreeNode, key: any):
+        if root is None:
+            return None        
+        if root.key == key:
+            return root
+        elif key > root.key:
+            return self.__ceil(root.right, key)
+        node = self.__ceil(root.left, key)
+        if node is not None:
+            return node
+        else:
+            return root
+    
     def floor(self, key:any) -> TreeNode:
         if self.root is None:
             return None
