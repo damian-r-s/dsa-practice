@@ -54,6 +54,28 @@ class BinarySearchTreeUnitTests(unittest.TestCase):
         self.bst.put('b', 35)
         
         self.assertEqual(self.bst.max().key, 'z', 'Maximum key should be z')
+        
+    def test_floor_return_none_if_tree_is_empty(self):
+        self.assertEqual(self.bst.floor('a'), None, 'If tree is empty then floor equals None!')
+        
+    def test_floor_is_on_the_left_found_correctly(self):
+        self.bst.put('d', 5)
+        self.bst.put('r', 10)
+        self.bst.put('b', 15)
+        self.bst.put('a', 20)
+        
+        self.assertEqual(self.bst.floor('c').key, 'b', 'The floor should be b!')
+    
+    def test_floor_is_on_the_right_found_correctly(self):
+        self.bst.put('c', 5)
+        self.bst.put('p', 15)
+        self.bst.put('r', 20)
+        self.bst.put('a', 25)
+        self.bst.put('b', 30)        
+        self.bst.put('o', 15)
+        
+        self.assertEqual(self.bst.floor('s').key, 'r', 'The floor should be r!')
+        self.assertEqual(self.bst.floor('q').key, 'p', 'The floor should be o!')
 
 if __name__ == '__main__':
     unittest.main()   

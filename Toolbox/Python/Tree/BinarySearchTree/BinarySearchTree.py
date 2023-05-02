@@ -71,3 +71,22 @@ class Tree:
         if root.left is None:
             return root        
         return self.__min(root.left)
+    
+    def floor(self, key:any) -> TreeNode:
+        if self.root is None:
+            return None
+        return self.__floor(self.root, key)
+    
+    def __floor(self, root: TreeNode, key: any) -> TreeNode:
+        if root is None:
+            return None
+        if root.key == key:
+            return root
+        elif key < root.key:
+            return self.__floor(root.left, key)
+        node = self.__floor(root.right, key)
+        if node is not None:
+            return node
+        else:
+            return root    
+        
