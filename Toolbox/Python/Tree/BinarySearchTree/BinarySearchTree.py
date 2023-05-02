@@ -43,12 +43,31 @@ class Tree:
         else:
             return self.__get(root.right, key)
         
-    def size(self):
+    def size(self) -> int:
         return self.__size(self.root)
         
-    def __size(self, root: TreeNode):
+    def __size(self, root: TreeNode) -> int:
         if root is None:
             return 0
         
         return root.size
-        
+    
+    def max(self) -> TreeNode:
+        if self.root is None:
+            return None
+        return self.__max(self.root)
+    
+    def __max(self, root: TreeNode) -> TreeNode:
+        if root.right is None:
+            return root
+        return self.__max(root.right)
+    
+    def min(self) -> TreeNode:
+        if self.root is None:
+            return None
+        return self.__min(self.root)
+    
+    def __min(self, root: TreeNode) -> TreeNode:
+        if root.left is None:
+            return root        
+        return self.__min(root.left)
