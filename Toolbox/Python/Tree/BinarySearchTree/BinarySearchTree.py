@@ -1,5 +1,3 @@
-
-
 class TreeNode:
     def __init__(self, key=None, val=any, size=0, left=None, right=None) -> None:
         self.key = key
@@ -54,14 +52,3 @@ class Tree:
         
         return root.size
         
-        
-tree = Tree()
-
-tree.put('s', 0)
-tree.put('e', 1)
-tree.put('a', 2)
-tree.put('r', 3)
-tree.put('c', 4)
-tree.put('h', 5)
-
-print(tree.size())
