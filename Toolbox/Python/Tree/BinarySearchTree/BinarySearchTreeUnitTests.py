@@ -135,8 +135,17 @@ class BinarySearchTreeUnitTests(unittest.TestCase):
         self.bst.put('j', 7)
         
         self.assertEqual(self.bst.rank('k'), 7, 'Must be equal to 7!')
+    
+    def test_delete_only_one_min(self):        
+        self.bst.put('a', 1)
+                
+        size = self.bst.size()        
+        self.bst.deleteMin()
         
-    def test_delte_min(self):
+        self.assertEqual(self.bst.size(), size - 1, 'Delete min node reduce size!')
+        self.assertEqual(self.bst.get('a'), None, 'Key cannot exist in the tree after being deleted!')
+        
+    def test_delete_min(self):
         self.bst.put('h', 4)         
         self.bst.put('b', 2)
         self.bst.put('a', 1)
@@ -148,6 +157,32 @@ class BinarySearchTreeUnitTests(unittest.TestCase):
         
         self.assertEqual(self.bst.size(), size - 1, 'Delete min node reduce size!')
         self.assertEqual(self.bst.get('a'), None, 'Key cannot exist in the tree after being deleted!')
+    
+    def test_delete(self):
+        self.bst.put('h', 4)         
+        self.bst.put('b', 2)
+        self.bst.put('a', 1)
+        self.bst.put('d', 3)
+        self.bst.put('c', 4)
+        self.bst.put('k', 5)
+        
+        size = self.bst.size()
+        self.bst.delete('b')
+        
+        self.assertEqual(self.bst.size(), size - 1, 'Delete min node reduce size!')
+        self.assertEqual(self.bst.get('b'), None, 'Key cannot exist in the tree after being deleted!')
+        
+        size = self.bst.size()
+        self.bst.delete('a')
+        
+        self.assertEqual(self.bst.size(), size - 1, 'Delete min node reduce size!')
+        self.assertEqual(self.bst.get('a'), None, 'Key cannot exist in the tree after being deleted!')
+        
+        size = self.bst.size()
+        self.bst.delete('h')
+        
+        self.assertEqual(self.bst.size(), size - 1, 'Delete min node reduce size!')
+        self.assertEqual(self.bst.get('h'), None, 'Key cannot exist in the tree after being deleted!')
         
     
 if __name__ == '__main__':

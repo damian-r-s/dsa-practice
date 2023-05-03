@@ -146,16 +146,40 @@ class Tree:
         
     def deleteMin(self):
         if self.root is None:
-            return None
-        
-        return self.__deleteMin(self.root)
+            return None        
+        self.root = self.__deleteMin(self.root)
+        return self.root
     
     def __deleteMin(self, root: TreeNode):
         if root.left is None:
-            return root.right
-        
+            return root.right        
         root.left = self.__deleteMin(root.left)
         root.size = 1 + self.__size(root.left) + self.__size(root.right)                
         return root
         
-        
+    def delete(self, key):
+        if self.root is None:
+            return None        
+        self.root = self.__delete(self.root, key)
+        return self.root
+    
+    def __delete(self, root: TreeNode, key):
+        if root is None:
+            return None
+        elif root.key > key:
+            root.left = self.__delete(root.left, key)
+        elif root.key < key:
+            root.right = self.__delete(root.right, key)
+        else: # found
+            if root.right is None:
+                return root.left
+            if root.left is None:
+                return root.right
+            
+            temporary:TreeNode = root
+            root = self.__min(temporary.right)
+            root.right = self.__deleteMin(temporary.right)
+            root.left = temporary.left
+            
+        root.size = 1 + self.__size(root.left) + self.__size(root.right)
+        return root
