@@ -19,5 +19,37 @@ class RedBlackBinarySearchTreeUnitTests(unittest.TestCase):
         self.assertTrue(node.isBlack())
         self.assertFalse(node.isRed())
         
+    def test_root_node_has_size_equal_to_one(self):
+        self.bst.put('A', 1)
+        
+        self.assertEqual(self.bst.size(), 1, 'One node in the tree must have size equal to 1!')
+        
+    def test_root_node_has_size_equal_to_two_if_two_nodes_added(self):
+        self.bst.put('A', 1)
+        self.bst.put('B', 2)
+        self.bst.put('C', 3)
+        
+        self.assertEqual(self.bst.size(), 3, 'Two nodes in the tree make the size of the tree equal to two!')
+        
+    def test_delete_minimum(self):        
+        self.bst.put('C', 3)
+        self.bst.put('B', 2)        
+        self.bst.put('A', 1)
+        self.bst.put('D', 4)
+        self.bst.put('E', 5)
+        
+        self.bst.deleteMin()
+        
+        self.assertEqual(self.bst.size(), 4, 'Size should be 4!')                
+        self.assertEqual(self.bst.get('A'), None, 'Node "A" should not be present!')
+        
+    def test_delete_minimum_if_only_one_node_exist(self):                
+        self.bst.put('B', 1)
+        
+        self.bst.deleteMin()
+        
+        self.assertEqual(self.bst.size(), 0, 'Size should be 1!')
+        self.assertEqual(self.bst.get('B'), None, 'Node "A" should not be present!')
+        
 if __name__ == '__main__':
     unittest.main()   
