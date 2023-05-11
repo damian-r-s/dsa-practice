@@ -26,10 +26,18 @@ class RedBlackTree:
     def isEmpty(self):
         return self.root is None
     
+    def contains(self, key):
+        return self.get(key) is not None
+    
     def __isRed(self, node: RedBlackTreeNode):
         if node is None:
             return False
         return node.isRed()
+    
+    def __isBlack(self, node: RedBlackTreeNode):
+        if node is None:
+            return False
+        return node.isBlack()
     
     def __flipColors(self, root: RedBlackTreeNode):
         root.markRed()        
@@ -81,7 +89,7 @@ class RedBlackTree:
         else:
             root.val = value
         
-        if self.__isRed(root.right) and not self.__isRed(root.left):
+        if self.__isRed(root.right) and self.__isRed(root.left) != True:
             root = self.__rotateLeft(root)
         
         if self.__isRed(root.left) and self.__isRed(root.left.left):
@@ -116,17 +124,26 @@ class RedBlackTree:
             self.__flipColors(current)
             
         return current
+    
+    def __moveRedRight(self, root: RedBlackTreeNode) -> RedBlackTreeNode:
+        current = root        
+        self.__flipColors(current)        
+        if self.__isRed(current.left.left):            
+            current = self.__rotateRight(current)
+            self.__flipColors(current)
+            
+        return current
   
     def deleteMin(self):
         if self.isEmpty():
             return
         
-        if not self.__isRed(self.root.left) and not self.__isRed(self.root.right):            
+        if self.__isBlack(self.root.left) and self.__isBlack(self.root.right):            
             self.root.markRed()
         
         self.root = self.__deleteMin(self.root)        
         
-        if not self.isEmpty():
+        if self.isEmpty() != True:
             self.root.markBlack()
                 
     def __deleteMin(self, root: RedBlackTreeNode):
@@ -134,7 +151,7 @@ class RedBlackTree:
         if current.left is None:
             return None
         
-        if not self.__isRed(current.left) and not self.__isRed(current.left.left):
+        if self.__isBlack(current.left) and self.__isBlack(current.left.left):
             current = self.__moveRedLeft(current)
             
         current.left = self.__deleteMin(current.left)
@@ -142,7 +159,7 @@ class RedBlackTree:
         
     def balance(self, root: RedBlackTreeNode) -> RedBlackTreeNode:        
         currentRoot = root        
-        if not self.__isRed(currentRoot.left) and self.__isRed(currentRoot.right):
+        if self.__isBlack(currentRoot.left) and self.__isRed(currentRoot.right):
             currentRoot = self.__rotateLeft(currentRoot)
         if self.__isRed(currentRoot.left) and self.__isRed(currentRoot.left.left):
             currentRoot = self.__rotateRight(currentRoot)
@@ -151,5 +168,49 @@ class RedBlackTree:
             
         currentRoot.size = 1 + self.__size(currentRoot.left) + self.__size(currentRoot.right)
         return currentRoot
+    
+    def min(self):
+        if self.isEmpty():
+            return None        
+        return self.__min(self.root)
+    
+    def __min(self, root: RedBlackTreeNode):
+        if root.left is None:
+            return root
+        return self.__min(root.left)
         
+    # def delete(self, key: any):
+    #     if self.contains(key) != True:
+    #         return
         
+    #     if self.__isRed(self.root.left) != True and self.__isRed(self.root.right) != True:
+    #         self.root.markRed()
+            
+    #     self.root = self.__delete(self.root, key)
+        
+    #     if self.isEmpty() != True:
+    #         self.root.markBlack()
+    
+    # def __delete(self, root: RedBlackTreeNode, key: any) -> RedBlackTreeNode:
+    #     current = root        
+    #     if key < current.key:
+    #         if self.__isRed(current.left) != True and self.__isRed(current.left.left) != True:
+    #             current = self.__moveRedLeft(current)
+    #         current.left = self.__delete(current.left, key)
+    #     else:
+    #         if self.__isRed(current.left):
+    #             current = self.__rotateRight(current)
+    #         if key == current.key and current.right is None:
+    #             return None
+    #         if self.__isRed(current.right) != True and self.__isRed(current.right.left) != True:
+    #             current = self.__moveRedRight(current)
+    #         if key == current.key:
+    #             node = self.__min(current.right)
+    #             current.key = node.key
+    #             current.val = node.val
+    #             current.right = self.__deleteMin(current.right)
+    #         else:
+    #             current.right = self.__delete(current.right, key)
+                
+    #     return self.balance(current)
+            
