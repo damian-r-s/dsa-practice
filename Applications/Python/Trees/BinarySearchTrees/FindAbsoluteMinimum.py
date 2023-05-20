@@ -1,4 +1,4 @@
-# Find absolute minimum
+# 530. Minimum Absolute Difference in BST
 # Definition for a binary tree node.
 
 class TreeNode:
