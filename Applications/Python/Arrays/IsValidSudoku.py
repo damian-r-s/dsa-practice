@@ -3,6 +3,9 @@
 # Each column must contain the digits 1-9 without repetition.
 # Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.
 
+from ast import List
+import collections
+
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
         cols = collections.defaultdict(set)
