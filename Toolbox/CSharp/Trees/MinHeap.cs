@@ -29,9 +29,7 @@ class MinHeap
             parent = index / 2;
         }
     }
-
     public int Peak() => _nodes[1];
-
     public int Pop()
     {
         if (_ptr == 0)
