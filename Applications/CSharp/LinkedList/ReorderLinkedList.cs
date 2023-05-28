@@ -33,11 +33,6 @@ class Solution
             result.next.next = list[l++];
             result = result.next.next;
         }
-
-        if (l == r)
-        {
-            result.next = list[l];
-        }
         result.next = null;
     }
 }
