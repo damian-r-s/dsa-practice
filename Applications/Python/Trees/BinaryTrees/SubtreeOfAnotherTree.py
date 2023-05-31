@@ -21,16 +21,7 @@ class Solution:
         if not root:
             return False
 
-        top = self.isSameTree(root, subRoot)
-        if top:
+        if self.isSameTree(root, subRoot):
             return True
 
-        left = self.isSubtree(root.left, subRoot)
-        if left:
-            return True
-
-        right = self.isSubtree(root.right, subRoot)
-        if right:
-            return True
-
-        return False       
+        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)        
