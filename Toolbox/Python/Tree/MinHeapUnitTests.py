@@ -20,17 +20,21 @@ class BinarySearchTreeUnitTests(unittest.TestCase):
         min = self.heap.pop()      
         self.assertEqual(min, 4, 'Min element should have value 4!')
         
+        self.heap.add(20)
+        
         min = self.heap.pop()      
         self.assertEqual(min, 6, 'Min element should have value 6!')
         
         min = self.heap.pop()      
         self.assertEqual(min, 8, 'Min element should have value 8!')
         
+        self.heap.add(11)
+        
         min = self.heap.pop()      
         self.assertEqual(min, 10, 'Min element should have value 10!')
         
         min = self.heap.pop()      
-        self.assertEqual(min, 12, 'Min element should have value 12!')
+        self.assertEqual(min, 11, 'Min element should have value 12!')
         
 if __name__ == '__main__':
     unittest.main()   

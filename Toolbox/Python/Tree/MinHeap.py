@@ -36,10 +36,13 @@ class MinHeap:
             self._nodes[index], self._nodes[index + 1] = self._nodes[index + 1], self._nodes[index]
             return result
         
-        while index < self._ptr // 2:
+        while index <= self._ptr // 2:
             leftChild = index * 2
             rightChild = index * 2 + 1
             current = self._nodes[index]
+            
+            if rightChild > self._ptr:
+                break
             
             if self._nodes[leftChild] < current or self._nodes[rightChild] < current:
                 if self._nodes[leftChild] < self._nodes[rightChild]:
