@@ -10,8 +10,7 @@ class Solution:
         n = len(nums) - 1
         count = 0
         l = r = 0
-        min = n * n
-
+        
         while r < n:
             far = 0
             for i in range(l, r + 1):
