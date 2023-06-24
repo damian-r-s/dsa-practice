@@ -26,10 +26,9 @@ class Solution:
             return l + r + t + d + 1
 
         for i in range(n):
-            for j in range(m):                
-                if (i, j) not in v:
-                    candidate = dfs(i, j)
-                    if candidate > maxi:
-                        maxi = candidate                    
+            for j in range(m):                                
+                candidate = dfs(i, j)
+                if candidate > maxi:
+                    maxi = candidate                    
 
         return maxi
