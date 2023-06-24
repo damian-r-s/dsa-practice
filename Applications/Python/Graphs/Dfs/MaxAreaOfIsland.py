@@ -5,6 +5,9 @@
 
 class Solution:
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        if not grid or not grid[0]:
+            return 0
+        
         n = len(grid)
         m = len(grid[0])        
         maxi = 0
